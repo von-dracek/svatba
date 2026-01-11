@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. Expand the card inside
         setTimeout(() => {
             overlay.classList.add('expand-card');
-        }, 800); // Wait for flap animations
+        }, 1600); // 1.5s transition + small buffer
 
         // 3. Hide overlay completely after expansion covers screen
         setTimeout(() => {
@@ -59,6 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, index * 100);
             });
 
-        }, 2100); // 800ms (flap) + 1200ms (expansion) + small buffer
+        }, 3000); // 1600 (flap) + 1200 (expansion) + buffer
     }, 1000); // Initial start delay
 });

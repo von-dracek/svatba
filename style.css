@@ -464,7 +464,7 @@ img {
     border-top: 200px solid #e6dace;
     /* Slightly darker for depth */
     transform-origin: top;
-    transition: transform 0.6s ease-in-out, z-index 0.6s linear;
+    transition: transform 1.5s ease-in-out, z-index 1.5s linear;
     z-index: 5;
 }
 
