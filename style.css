@@ -342,3 +342,96 @@ img {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Opening Overlay */
+#opening-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    /* Allow clicks to pass through after animation */
+    pointer-events: none;
+}
+
+#opening-overlay .overlay-panel-top,
+#opening-overlay .overlay-panel-bottom {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: var(--color-background);
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: transform;
+    /* Ensure panels cover everything initially */
+    z-index: 1;
+}
+
+#opening-overlay .overlay-panel-top {
+    top: 0;
+}
+
+#opening-overlay .overlay-panel-bottom {
+    bottom: 0;
+}
+
+/* Initially, allow pointer events on the overlay so it blocks interaction */
+#opening-overlay.active {
+    pointer-events: auto;
+}
+
+/* The Reveal State */
+#opening-overlay.start-reveal .overlay-panel-top {
+    transform: translateY(-100%);
+}
+
+#opening-overlay.start-reveal .overlay-panel-bottom {
+    transform: translateY(100%);
+}
+
+.overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--color-primary);
+    font-weight: 700;
+    z-index: 2;
+    transition: opacity 0.5s ease-out;
+}
+
+#opening-overlay.start-reveal .overlay-content {
+    opacity: 0;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* Hero Staggered Animation */
+.hero-content>* {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.hero-content>*.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
