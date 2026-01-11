@@ -413,6 +413,30 @@ img {
     z-index: 10000;
 }
 
+/* Side Flaps */
+.envelope-side-left,
+.envelope-side-right {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    z-index: 3;
+    pointer-events: none;
+    border-top: 175px solid transparent;
+    border-bottom: 175px solid transparent;
+}
+
+.envelope-side-left {
+    left: 0;
+    border-left: 300px solid #ede3d8;
+    /* Slightly darker than body for distinction */
+}
+
+.envelope-side-right {
+    right: 0;
+    border-right: 300px solid #ede3d8;
+}
+
 /* The front body of the envelope (bottom fold) */
 .envelope-body {
     position: absolute;
@@ -424,7 +448,7 @@ img {
     border-left: 250px solid transparent;
     border-right: 250px solid transparent;
     border-bottom: 200px solid var(--color-secondary);
-    z-index: 3;
+    z-index: 4;
     pointer-events: none;
 }
 
@@ -441,7 +465,7 @@ img {
     /* Slightly darker for depth */
     transform-origin: top;
     transition: transform 0.6s ease-in-out, z-index 0.6s linear;
-    z-index: 4;
+    z-index: 5;
 }
 
 #opening-overlay.open-flap .envelope-flap {
@@ -468,7 +492,7 @@ img {
     font-weight: 700;
     font-size: 1.2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 5;
+    z-index: 6;
     transition: opacity 0.4s;
     border: 2px solid rgba(255, 255, 255, 0.2);
 }
@@ -480,7 +504,9 @@ img {
 /* Hide envelope parts during expansion */
 #opening-overlay.expand-card .envelope-body,
 #opening-overlay.expand-card .envelope-back,
-#opening-overlay.expand-card .envelope-flap {
+#opening-overlay.expand-card .envelope-flap,
+#opening-overlay.expand-card .envelope-side-left,
+#opening-overlay.expand-card .envelope-side-right {
     opacity: 0;
     transition: opacity 0.3s;
 }
