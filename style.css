@@ -8,16 +8,16 @@
     /* Cream/Beige */
     --color-accent: #D8A48F;
     /* Blush Pink */
-    --color-text: #2C3E50;
+    --color-text: #222222;
     /* Slate Grey - nice reading color */
-    --color-text-light: #606F7B;
-    --color-background: #FDFBF7;
+    --color-text-light: #222222;
+    --color-background: #fbf7ee;
     /* Off-white */
     --color-white: #FFFFFF;
 
     /* Typography */
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Lato', sans-serif;
+    --font-heading: 'Marcellus', serif;
+    --font-body: 'Marcellus', serif;
 
     /* Spacing */
     --spacing-xs: 0.5rem;
@@ -171,10 +171,10 @@ img {
 }
 
 .logo {
-    font-family: var(--font-heading);
+    font-family: 'Allura', cursive;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: #222222;
 }
 
 .nav-links {
@@ -195,65 +195,111 @@ img {
 
 /* Hero Section */
 .hero-section {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    padding: var(--spacing-lg) var(--spacing-md);
+    background-color: var(--color-background);
+    /* Cream background */
     text-align: center;
-    padding: 0 var(--spacing-md);
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1519225421980-715cb0202128?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-    color: var(--color-white);
-    position: relative;
-    /* Placeholder fallback color if image doesn't load */
-    background-color: var(--color-primary);
 }
 
 .hero-title {
-    font-size: 4rem;
-    font-style: italic;
-    margin-bottom: var(--spacing-sm);
-    color: var(--color-white);
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-family: 'Allura', cursive;
+    font-size: 12rem;
+    font-weight: 400;
+    font-style: normal;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.1;
+}
+
+.hero-image-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-main-image {
+    max-width: 30%;
+    max-height: 50vh;
+    /* Adjust based on preference */
+    object-fit: contain;
+    width: auto;
+    /* Optional: box shadow or border if desired, but user image looked clean */
+}
+
+/* Hero Footer Row */
+.hero-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    border-top: 1px solid transparent;
+    /* Placeholder for spacing if needed */
+    padding-top: var(--spacing-md);
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    color: var(--color-text);
+}
+
+.hero-date,
+.hero-location,
+.hero-rsvp {
+    flex: 1;
 }
 
 .hero-date {
-    font-size: 1.5rem;
-    margin-bottom: var(--spacing-xs);
-    font-weight: 300;
-    letter-spacing: 2px;
+    text-align: left;
 }
 
 .hero-location {
-    font-size: 1.2rem;
-    margin-bottom: var(--spacing-md);
-    font-weight: 300;
+    text-align: right;
 }
 
-.scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    animation: bounce 2s infinite;
-    font-size: 2rem;
-    opacity: 0.8;
+.hero-rsvp {
+    text-align: center;
 }
 
-@keyframes bounce {
+.btn-text {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-weight: 700;
+    transition: color 0.3s;
+}
 
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-        transform: translateY(0);
+.btn-text:hover {
+    color: var(--color-primary);
+}
+
+/* Mobile Responsiveness for Hero */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 4rem;
+        /* Smaller on mobile but still big */
     }
 
-    40% {
-        transform: translateY(-10px);
+    .hero-footer {
+        flex-direction: column;
+        gap: var(--spacing-sm);
     }
 
-    60% {
-        transform: translateY(-5px);
+    .hero-date,
+    .hero-location,
+    .hero-rsvp {
+        text-align: center;
+    }
+
+    .hero-main-image {
+        max-height: 40vh;
     }
 }
 
@@ -422,8 +468,8 @@ img {
     left: 5px;
     right: 5px;
     bottom: 5px;
-    /* Match the Hero section background (Green + Dark Overlay) */
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), var(--color-primary);
+    /* Match the Hero section background (Cream) */
+    background: var(--color-background);
     z-index: 2;
     transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
     will-change: transform;
@@ -502,17 +548,17 @@ img {
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     background-color: var(--color-accent);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-    font-family: var(--font-heading);
+    font-family: 'Allura', cursive;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 6;
     transition: opacity 0.4s;
