@@ -350,61 +350,138 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
+    background-color: #e0e0e0;
     z-index: 9999;
-    /* Allow clicks to pass through after animation */
-    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-out, visibility 1s;
 }
 
-#opening-overlay .overlay-panel-top,
-#opening-overlay .overlay-panel-bottom {
+#opening-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    /* Ensure it doesn't block anything */
+    display: none;
+}
+
+.envelope-container {
+    perspective: 1000px;
+    /* Larger size as requested */
+    width: 500px;
+    height: 350px;
+    position: relative;
+    z-index: 2;
+}
+
+.envelope {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: var(--color-secondary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.envelope-back {
     position: absolute;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 50%;
-    background-color: var(--color-background);
-    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
-    will-change: transform;
-    /* Ensure panels cover everything initially */
+    height: 100%;
+    background-color: #d1c4b7;
     z-index: 1;
 }
 
-#opening-overlay .overlay-panel-top {
-    top: 0;
-}
-
-#opening-overlay .overlay-panel-bottom {
-    bottom: 0;
-}
-
-/* Initially, allow pointer events on the overlay so it blocks interaction */
-#opening-overlay.active {
-    pointer-events: auto;
-}
-
-/* The Reveal State */
-#opening-overlay.start-reveal .overlay-panel-top {
-    transform: translateY(-100%);
-}
-
-#opening-overlay.start-reveal .overlay-panel-bottom {
-    transform: translateY(100%);
-}
-
-.overlay-content {
+/* The card inside that will expand (Renamed from .card) */
+.envelope-card {
     position: absolute;
-    top: 50%;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    background-color: var(--color-white);
+    z-index: 2;
+    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: transform;
+}
+
+#opening-overlay.expand-card .envelope-card {
+    /* Huge scale to ensure coverage */
+    transform: scale(80);
+    z-index: 10000;
+}
+
+/* The front body of the envelope (bottom fold) */
+.envelope-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 500px width / 2 = 250px borders */
+    border-left: 250px solid transparent;
+    border-right: 250px solid transparent;
+    border-bottom: 200px solid var(--color-secondary);
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* The top flap */
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-left: 250px solid transparent;
+    border-right: 250px solid transparent;
+    border-top: 200px solid #e6dace;
+    /* Slightly darker for depth */
+    transform-origin: top;
+    transition: transform 0.6s ease-in-out, z-index 0.6s linear;
+    z-index: 4;
+}
+
+#opening-overlay.open-flap .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+    /* Fall behind the card */
+}
+
+/* The Seal */
+.wax-seal {
+    position: absolute;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
     font-family: var(--font-heading);
-    font-size: 4rem;
-    color: var(--color-primary);
     font-weight: 700;
-    z-index: 2;
-    transition: opacity 0.5s ease-out;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    transition: opacity 0.4s;
+    border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-#opening-overlay.start-reveal .overlay-content {
+#opening-overlay.open-flap .wax-seal {
     opacity: 0;
+}
+
+/* Hide envelope parts during expansion */
+#opening-overlay.expand-card .envelope-body,
+#opening-overlay.expand-card .envelope-back,
+#opening-overlay.expand-card .envelope-flap {
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
 @keyframes pulse {

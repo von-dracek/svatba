@@ -32,26 +32,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // Opening Animation Logic
     const overlay = document.getElementById('opening-overlay');
 
-    // Ensure overlay blocks interaction initially
-    overlay.classList.add('active');
-
     // Sequence
     setTimeout(() => {
-        // 1. Reveal (Split panels + fade text)
-        overlay.classList.add('start-reveal');
+        // 1. Open the envelope flap
+        overlay.classList.add('open-flap');
 
-        // 2. Allow interaction after split starts to finish (approx)
+        // 2. Expand the card inside
         setTimeout(() => {
-            overlay.classList.remove('active');
-        }, 1500);
+            overlay.classList.add('expand-card');
+        }, 800); // Wait for flap animations
 
-        // 3. Trigger hero animations slightly after split starts
-        const heroElements = document.querySelectorAll('.hero-content > *');
-        heroElements.forEach((el, index) => {
+        // 3. Hide overlay completely after expansion covers screen
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+
+            // Ensure display:none is applied after fade out (1s transition in CSS)
             setTimeout(() => {
-                el.classList.add('animate-in');
-            }, 800 + (index * 200)); // Start revealing hero items as curtains open
-        });
+                overlay.classList.add('removed');
+            }, 1000);
 
-    }, 1500); // Initial wait
+            // 4. Trigger hero animations
+            const heroElements = document.querySelectorAll('.hero-content > *');
+            heroElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('animate-in');
+                }, index * 200);
+            });
+
+        }, 2100); // 800ms (flap) + 1200ms (expansion) + small buffer
+    }, 1000); // Initial start delay
 });
