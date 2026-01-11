@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             heroElements.forEach((el, index) => {
                 setTimeout(() => {
                     el.classList.add('animate-in');
-                }, index * 200);
+                }, index * 100);
             });
 
         }, 2100); // 800ms (flap) + 1200ms (expansion) + small buffer
