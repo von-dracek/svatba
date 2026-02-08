@@ -320,10 +320,10 @@ img {
     }
 
 
-    /* .nav-links {
+    .nav-links {
         display: none;
         /* In a real app, we'd add a hamburger menu here */
-    } */
+    }
 
     .section-title {
         font-size: 2rem;
