@@ -294,8 +294,8 @@ img {
 /* Mobile Responsiveness for Hero */
 @media (max-width: 768px) {
     .hero-title {
-        font-size: 4rem;
-        /* Smaller on mobile but still big */
+        font-size: 6rem;
+        /* Larger and more prominent on mobile */
     }
 
     .hero-footer {
@@ -310,8 +310,25 @@ img {
     }
 
     .hero-main-image {
-        max-height: 40vh;
+        max-width: 80%;
+        max-height: none;
+        /* Make image much larger on mobile */
     }
+
+    .hero-text-insert {
+    font-size: 1rem;
+    }
+
+
+    /* .nav-links {
+        display: none;
+        /* In a real app, we'd add a hamburger menu here */
+    } */
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
 }
 
 /* Details Section */
@@ -403,21 +420,7 @@ img {
     letter-spacing: 1px;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 3rem;
-    }
 
-    .nav-links {
-        display: none;
-        /* In a real app, we'd add a hamburger menu here */
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-}
 
 /* Animations */
 .fade-in {
