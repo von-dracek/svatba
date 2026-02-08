@@ -291,11 +291,11 @@ img {
     color: var(--color-primary);
 }
 
-/* Mobile Responsiveness for Hero */
-@media (max-width: 768px) {
+/* Mobile/Portrait Responsiveness for Hero */
+@media (max-aspect-ratio: 1/1) {
     .hero-title {
         font-size: 6rem;
-        /* Larger and more prominent on mobile */
+        /* Larger and more prominent on portrait devices */
     }
 
     .hero-footer {
@@ -312,13 +312,12 @@ img {
     .hero-main-image {
         max-width: 80%;
         max-height: none;
-        /* Make image much larger on mobile */
+        /* Make image much larger on portrait devices */
     }
 
     .hero-text-insert {
-    font-size: 1rem;
+        font-size: 1rem;
     }
-
 
     .nav-links {
         display: none;
@@ -328,7 +327,6 @@ img {
     .section-title {
         font-size: 2rem;
     }
-}
 }
 
 /* Details Section */
